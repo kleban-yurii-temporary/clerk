@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,6 +15,6 @@ namespace Clerk.Core
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string? Title { get; set; }        
-        public virtual ICollection<Position>? Positions { get; set; }
+        public virtual ICollection<Position>? Positions { get; set; }        
     }
 }

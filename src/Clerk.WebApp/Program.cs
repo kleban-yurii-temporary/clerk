@@ -1,4 +1,5 @@
 using Clerk.Core;
+using Clerk.Fake;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ClerkContext>();
+
+builder.Services.AddTransient<FakeDataInitRepository>();
 
 builder.Services.AddControllersWithViews();
 
