@@ -1,5 +1,6 @@
 using Clerk.Core;
 using Clerk.Fake;
+using Clerk.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
     .AddEntityFrameworkStores<ClerkContext>();
 
 builder.Services.AddScoped<FakeDataInitRepository>();
+builder.Services.AddScoped<DepartmentRepository>();
 
 builder.Services.AddControllersWithViews();
 

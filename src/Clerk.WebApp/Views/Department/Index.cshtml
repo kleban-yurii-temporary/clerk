@@ -1,0 +1,12 @@
+﻿@using Clerk.Core
+
+@model IEnumerable<Department>
+@{
+}
+
+<h3>Відділи</h3>
+
+@foreach(var d in Model)
+{
+    <p><strong>@d.Title</strong> (Посад: @d.Positions.Count())</p>
+}
