@@ -16,6 +16,6 @@ namespace Clerk.Core
         public DateTime? Date { get; set; }        
         public decimal Amount { get; set; }
         public PersonOnPosition? PersonOnPosition { get; set; }
-        public SalaryComponent SalaryComponent { get; set; }
+        public SalaryComponent? SalaryComponent { get; set; }
     }
 }

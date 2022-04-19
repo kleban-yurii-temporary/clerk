@@ -13,8 +13,7 @@ namespace Clerk.Core
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public DateTime? Date { get; set; }
-        
+        public DateTime? Date { get; set; }        
         public virtual ICollection<AttachedFile> Files { get; set; }
         
     }

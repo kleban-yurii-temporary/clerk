@@ -12,8 +12,8 @@ namespace Clerk.Core
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }        
-        public Person? Person { get; set; }
+        public int Id { get; set; }
+        public Person? Person { get; set; } 
         public Position? Position { get; set; }
         public DateTime? StartDate { get; set; } = null;
         public DateTime? EndDate { get; set; } = null;
