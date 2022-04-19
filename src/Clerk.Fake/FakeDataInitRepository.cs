@@ -142,7 +142,10 @@ namespace Clerk.Fake
                             SalaryComponent = pay.SalaryComponent
                         });                    
                     }
-                }                
+                }
+                
+                await _ctx.SaveChangesAsync();
+
             }
         }
 

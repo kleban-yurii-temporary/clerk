@@ -20,8 +20,7 @@ namespace Clerk.WebApp.Controllers
         [HttpGet]
         [Route("/api/[controller]/path")]
         public async Task<string> WebPath()
-        {
-            
+        {            
             return _webHostEnvironment.WebRootPath;
         }
 

@@ -16,7 +16,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ClerkContext>();
 
-builder.Services.AddTransient<FakeDataInitRepository>();
+builder.Services.AddScoped<FakeDataInitRepository>();
 
 builder.Services.AddControllersWithViews();
 
