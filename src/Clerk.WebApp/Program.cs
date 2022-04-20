@@ -6,16 +6,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("ClerkConnection");;
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("ClerkConnection");
 builder.Services.AddDbContext<ClerkContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ClerkContext>();
+
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddScoped<FakeDataInitRepository>();
 builder.Services.AddScoped<DepartmentRepository>();

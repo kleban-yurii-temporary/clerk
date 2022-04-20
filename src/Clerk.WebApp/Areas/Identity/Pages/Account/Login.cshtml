@@ -1,0 +1,64 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<div class="d-flex justify-content-center py-4">
+    <a href="/" class="logo d-flex align-items-center w-auto">
+        <img src="/img/logo.png" height="30" alt="">
+    </a>
+</div><!-- End Logo -->
+
+<div class="card mb-3">
+    <div class="card-body">
+
+        <div class="pt-4 pb-2">
+            <h5 class="card-title text-center pb-0 fs-4">Вхід у обліковий запис</h5>
+            <p class="text-center small">Введіть пошту па роль! Тільки для адмінстратора!</p>
+        </div>
+
+        <form class="row g-3 needs-validation" novalidate id="account" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="col-12">
+                <label asp-for="Input.Email" class="form-label"></label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">x</span>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-12">
+           
+                    <label asp-for="Input.Password" class="form-label"></label>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+     
+            </div>
+            <div>
+                <div class="col-12">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe" class="form-check-label">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-primary w-100" type="submit">Увійти</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
