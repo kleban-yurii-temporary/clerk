@@ -11,7 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("ClerkConnectio
 builder.Services.AddDbContext<ClerkContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ClerkContext>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();

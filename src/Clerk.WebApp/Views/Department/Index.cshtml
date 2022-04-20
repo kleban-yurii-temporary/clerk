@@ -1,12 +1,35 @@
 ﻿@using Clerk.Core
 
 @model IEnumerable<Department>
+
 @{
+    ViewData["Title"] = "Відділи";
 }
 
-<h3>Відділи</h3>
+<div class="pagetitle">
+    <h1>@ViewData["Title"]</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">Pages</li>
+            <li class="breadcrumb-item active">Blank</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
 
-@foreach(var d in Model)
-{
-    <p><strong>@d.Title</strong> (Посад: @d.Positions.Count())</p>
-}
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    @foreach (var d in Model)
+                    {
+                        <p><strong>@d.Title</strong> (Посад: @d.Positions.Count())</p>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
