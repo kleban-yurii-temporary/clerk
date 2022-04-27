@@ -7,12 +7,11 @@
 }
 
 <div class="pagetitle">
-    <h1>@ViewData["Title"]</h1>
+    <h1><i class="bi bi-briefcase"></i>&nbsp;&nbsp;@ViewData["Title"]</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item">Pages</li>
-            <li class="breadcrumb-item active">Blank</li>
+            <li class="breadcrumb-item"><a href="/">Головна</a></li>
+            <li class="breadcrumb-item active">Відділи</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
@@ -23,10 +22,34 @@
 
             <div class="card">
                 <div class="card-body">
-                    @foreach (var d in Model)
-                    {
-                        <p><strong>@d.Title</strong> (Посад: @d.Positions.Count())</p>
-                    }
+                    <div style="float:right; margin:20px 0 0 0"> 
+                        <a href="/department/create" class="btn btn-primary"><i class="bi bi-node-plus-fill"></i> Додати</a>
+                    </div>
+                    <h5 class="card-title">Перелік відділів</h5>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Назва</th>
+                                <th scope="col">К-ть працівників</th>
+                                <th scope="col">Дії</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in Model)
+                            {
+
+                                <tr>
+                                    <td>@d.Title</td>
+                                    <td>@d.Positions.Count()</td>
+                                    <td>
+                                        <a href="/department/edit/@d.Id" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Редагувати"><i class="bi bi-pencil-fill"></i></a>
+                                        <a href="/department/delete/@d.Id" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Видалити"><i class="bi bi-trash-fill"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
