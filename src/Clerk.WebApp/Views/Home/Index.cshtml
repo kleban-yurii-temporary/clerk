@@ -1,34 +1,129 @@
-﻿@{
+﻿@using Clerk.Repositories
+@using Clerk.Repositories.Models
+@model AnalyticInfo
+
+@{
     ViewData["Title"] = "Аналітика";
 }
 
-    <div class="pagetitle">
-      <h1><i class="bi bi-gem"></i>&nbsp;&nbsp;@ViewData["Title"]</h1>     
+<div class="pagetitle">
+    <h1><i class="bi bi-gem"></i>&nbsp;&nbsp;@ViewData["Title"]</h1>
+</div>
+
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+
+                <!-- Sales Card -->
+                <div class="col-xxl-3 col-md-6">
+                    <div class="card info-card sales-card">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Відділів <span>| Всього</span></h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-cart"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>@Model.DepartmentsCount</h6>
+                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Sales Card -->
+                <!-- Sales Card -->
+                <div class="col-xxl-3 col-md-6">
+                    <div class="card info-card sales-card">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Працівників <span>| Всього</span></h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-cart"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>@Model.EmployeesCount</h6>
+                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Sales Card -->
+                <!-- Sales Card -->
+                <div class="col-xxl-3 col-md-6">
+                    <div class="card info-card sales-card">
+
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                    <h6>Фільтр</h6>
+                                </li>
+                                @foreach(var f in Model.FilterList)
+                                {
+                                    <li><a class="dropdown-item" href="/home/index?avgFilter=@f.Key&maxFilter=@Model.MaxFilter.Key">@f.Value</a></li>
+                                }
+                             </ul>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Середня З/П <span>| @Model.AvgFilter.Value</span></h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-currency-dollar"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>@Model.Avg</h6>
+                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Sales Card -->
+                <!-- Sales Card -->
+                <div class="col-xxl-3 col-md-6">
+                    <div class="card info-card sales-card">
+
+                         <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                    <h6>Фільтр</h6>
+                                </li>
+                                @foreach(var f in Model.FilterList)
+                                {
+                                    <li><a class="dropdown-item" href="/home/index?avgFilter=@Model.AvgFilter.Key&maxFilter=@f.Key">@f.Value</a></li>
+                                }
+                             </ul>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Найбільша З/П <span>| @Model.MaxFilter.Value</span></h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-cart"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>@Model.Max</h6>
+                                    <span class="text-muted small pt-2 ps-1">@Model.MaxPerson</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Sales Card -->
+
+
+            </div>
+        </div>
     </div>
+</section>
 
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Welcome</h5>
-             <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-    

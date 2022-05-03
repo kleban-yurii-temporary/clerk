@@ -1,5 +1,6 @@
 ﻿using Clerk.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Clerk.WebApp.Controllers
 {
@@ -13,7 +14,9 @@ namespace Clerk.WebApp.Controllers
         
         public IActionResult Index()
         {
-            return View(_departmentRepository.GetAll());
+            var departments = _departmentRepository.GetAll();
+            ViewBag.Count = departments.Count();
+            return View(departments);
         }
     }
 }

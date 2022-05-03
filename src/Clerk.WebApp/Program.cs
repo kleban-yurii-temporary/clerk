@@ -16,8 +16,9 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddScoped<FakeDataInitRepository>();
+//builder.Services.AddScoped<FakeDataInitRepository>();
 builder.Services.AddScoped<DepartmentRepository>();
+builder.Services.AddScoped<InfoRepository>();
 
 builder.Services.AddControllersWithViews();
 
