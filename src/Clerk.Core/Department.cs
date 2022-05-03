@@ -17,7 +17,7 @@ namespace Clerk.Core
 
         [Required(ErrorMessage = "Це поле не може бути пустим")]
         [MinLength(3, ErrorMessage = "Мінімальна довжина поля 3 символи")]
-        [Display(Name = "Назва")]
+        [Display(Name = "Назва відділу")]
         public string? Title { get; set; }        
         public virtual ICollection<Position>? Positions { get; set; }        
     }

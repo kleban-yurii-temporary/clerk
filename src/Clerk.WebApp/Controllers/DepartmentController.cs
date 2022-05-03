@@ -36,7 +36,7 @@ namespace Clerk.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            return View();
+            return View(new Department());
         }
 
         [HttpPost]
@@ -54,7 +54,7 @@ namespace Clerk.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            return View(await _departmentRepository.GetAsync(id));
+            return View(await _departmentRepository.GetInfoAsync(id));
         }
 
         [HttpPost]

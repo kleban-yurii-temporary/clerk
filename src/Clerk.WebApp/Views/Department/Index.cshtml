@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-body">
                     <div style="float:right; margin:20px 0 0 0">
-                        <a href="/department/create" class="btn btn-primary"><i class="bi bi-node-plus-fill"></i> Додати</a>
+                        <a href="/department/create" class="btn btn-primary"><i class="bi bi-node-plus-fill"></i>&nbsp;&nbsp;Додати</a>
                     </div>
                     <h5 class="card-title">Перелік відділів</h5>
 
@@ -109,6 +109,7 @@
         </div>
     </div>
 </div><!-- End Small Modal-->
+
 @section Scripts {
 
 <script>
@@ -124,6 +125,7 @@
              selected_row = $(this).closest('tr');
 
              var data_title = $(this).closest('tr').find("td").html();
+
              $.post("/department/haspositions", {id: selected_data_id}, function(data) {
                var count = data;
 
@@ -140,20 +142,14 @@
 
          $("#removeDepartmentBtn").click(function() {
 
-              $.post("/department/delete", {id: selected_data_id}, 
-                function(data) {  });         
+              $.post("/department/delete", {id: selected_data_id},
+                function(data) {  });
 
              selected_row.remove();
              $("#removeModal").modal("hide");
          });
 
     });
-
-
-
-    //
-
-     //$(this).closest('tr').remove();
 
 
 </script>

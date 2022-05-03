@@ -56,7 +56,7 @@ namespace Clerk.Repositories
             return list;
         }
 
-        public async Task<DepartmentInfo> GetAsync(int id)
+        public async Task<DepartmentInfo> GetInfoAsync(int id)
         {
             return GetStructure().FirstOrDefault(x=> x.Id == id);
         }

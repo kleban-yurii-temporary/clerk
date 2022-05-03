@@ -11,7 +11,7 @@ namespace Clerk.Repositories.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Назва")]
+        [Display(Name = "Назва відділу")]
         public string? Title { get; set; }
         public List<KeyValuePair<string, string>>? PostionAndPerson { get; set; }
     }
