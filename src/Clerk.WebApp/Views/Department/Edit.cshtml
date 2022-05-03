@@ -1,0 +1,73 @@
+﻿@using Clerk.Repositories.Models
+
+@model DepartmentInfo
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<div class="pagetitle">
+    <h1><i class="bi bi-briefcase"></i>&nbsp;&nbsp;@ViewData["Title"]</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Головна</a></li>
+            <li class="breadcrumb-item"><a href="/department">Відділи</a></li>
+            <li class="breadcrumb-item active">@Model.Title</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <h5 class="card-title">Редагування відділу</h5>
+
+                    <form asp-action="Edit" asp-controller="Department">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="row mb-3">
+                            <label asp-for="Title" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Title" type="text" class="form-control">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">&nbsp;</label>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary"><i class="bi bi-folder-plus"></i>&nbsp;Зберегти відділ</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <hr />
+                    <h5 class="card-title">Посади у відділі</h5>
+                    <ol class="list-group list-group-numbered">
+
+                        @foreach (var p in Model.PostionAndPerson)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                   <div>@p.Key (<i>@p.Value</i>)</div>
+                                </div>
+                            </li>
+                        }
+
+                    </ol>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

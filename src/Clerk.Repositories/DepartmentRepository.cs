@@ -55,5 +55,33 @@ namespace Clerk.Repositories
 
             return list;
         }
+
+        public async Task<DepartmentInfo> GetAsync(int id)
+        {
+            return GetStructure().FirstOrDefault(x=> x.Id == id);
+        }
+
+        public async Task EditAsync(DepartmentInfo model)
+        {
+            _ctx.Departments.First(x => x.Id == model.Id).Title = model.Title;
+            await _ctx.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            _ctx.Departments.Remove(await _ctx.Departments.FirstAsync(x => x.Id == id));
+            await _ctx.SaveChangesAsync();
+        }
+
+        public async Task<int> PositionsCountAsync(int id)
+        {
+            return (await _ctx.Departments.Include(x=> x.Positions).FirstAsync(x=> x.Id == id)).Positions.Count();
+        }     
+
+        public async Task CreateAsync(Department model)
+        {
+            await _ctx.Departments.AddAsync(model);
+            await _ctx.SaveChangesAsync();
+        }
     }
 }

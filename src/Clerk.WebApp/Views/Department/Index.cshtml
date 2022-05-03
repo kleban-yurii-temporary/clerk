@@ -43,7 +43,7 @@
                                     <td>@d.Positions.Count()</td>
                                     <td>
                                         <a href="/department/edit/@d.Id" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Редагувати"><i class="bi bi-pencil-fill"></i></a>
-                                        <a href="/department/delete/@d.Id" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Видалити"><i class="bi bi-trash-fill"></i></a>
+                                        <a href="#" data-id="@d.Id" class="btn btn-danger btn-sm btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" title="Видалити"><i class="bi bi-trash-fill"></i></a>
                                     </td>
                                 </tr>
                             }
@@ -55,3 +55,108 @@
         </div>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="errorModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger">Помилка!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Не можливо видалити відділ <strong class="departmentTitle"></strong>. Він містить <strong class="text-danger departmentPositionsCount"></strong> посад.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+            </div>
+        </div>
+    </div>
+</div><!-- End Small Modal-->
+
+<div class="modal fade" id="removeModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Видалення відділу</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Ви справді бажаєте видалити відділ <strong class="departmentTitle"></strong>?
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="removeDepartmentBtn" class="btn btn-danger"><i class="bi bi-exclamation-octagon"></i>&nbsp;&nbsp;Видалити</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+            </div>
+        </div>
+    </div>
+</div><!-- End Small Modal-->
+@section Scripts {
+
+<script>
+
+    $(function () {
+
+         var selected_data_id = -1;
+         var selected_row = null;
+
+         $(".btn-delete").click(function() {
+
+             selected_data_id = $(this).attr("data-id");
+             selected_row = $(this).closest('tr');
+
+             var data_title = $(this).closest('tr').find("td").html();
+             $.post("/department/haspositions", {id: selected_data_id}, function(data) {
+               var count = data;
+
+                $(".departmentTitle").html(data_title);
+
+               if(count > 0) {
+                   $(".departmentPositionsCount").html(count);
+                   $("#errorModal").modal("show");
+               } else {
+                   $("#removeModal").modal("show");
+               }
+             });
+         });
+
+         $("#removeDepartmentBtn").click(function() {
+
+              $.post("/department/delete", {id: selected_data_id}, 
+                function(data) {  });         
+
+             selected_row.remove();
+             $("#removeModal").modal("hide");
+         });
+
+    });
+
+
+
+    //
+
+     //$(this).closest('tr').remove();
+
+
+</script>
+
+}
+
