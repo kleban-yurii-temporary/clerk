@@ -19,7 +19,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //builder.Services.AddScoped<FakeDataInitRepository>();
 builder.Services.AddScoped<DepartmentRepository>();
 builder.Services.AddScoped<InfoRepository>();
-
+builder.Services.AddScoped<PersonRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

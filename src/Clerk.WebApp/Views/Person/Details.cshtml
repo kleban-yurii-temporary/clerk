@@ -1,0 +1,44 @@
+﻿@using Clerk.Core
+
+@model Person
+
+@{
+    ViewData["Title"] = $"Інформація про {Model.FirstName} {@Model.LastName}";
+}
+
+<div class="pagetitle">
+    <h1><i class="bi bi-briefcase"></i>&nbsp;&nbsp;@ViewData["Title"]</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Головна</a></li>
+            <li class="breadcrumb-item"><a href="/person/index">Посадові особи</a></li>
+            <li class="breadcrumb-item active">@Model.FirstName @Model.LastName</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <br />
+                    <img src="/person/avatar/@Model.Id?@(new Random().NextDouble())" width="100%" class="img-thumbnail" />
+
+                    <hr />
+                    <form asp-action="UploadAvatar" enctype="multipart/form-data" method="post">
+
+                        <input asp-for="Id" type="hidden" />
+                        <label>Змінити аватар</label>
+                        <div style="margin: 10px 0">
+                            <input class="form-control" type="file" name="avatar" id="avatar" accept="png,jpeg,jpg">
+                        </div>
+                        <button id="btn-upload" type="submit" class="btn btn-outline-primary" style="width: 100%">Завантажити</button>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

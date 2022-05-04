@@ -17,7 +17,7 @@ namespace Clerk.Core
         public string? LastName { get; set; }
         public string? SurName { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public string? AvatarPath { get; set; } = "/user/noavatar";
+        public string? AvatarPath { get; set; }
         public Gender? Gender { get; set; } = Core.Gender.NotDefined;
         public virtual ICollection<PersonOnPosition>? OnPositions { get; set; }
     }
